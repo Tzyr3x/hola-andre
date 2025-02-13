@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hola Andre</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #000000;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            font-size: 50px;
+            color: #ff0000;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            transition: opacity 1s ease-in-out, transform 0.5s ease-in-out;
+        }
+        h1:hover {
+            transform: scale(1.1);
+            color: #ff4d4d;
+        }
+        img {
+            display: none;
+            margin-top: 20px;
+            max-width: 80%;
+            border-radius: 10px;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        }
+        img:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+        button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #ff4d4d;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+        button:hover {
+            background-color: #ff0000;
+            transform: scale(1.1);
+        }
+        .gatos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .gatos img {
+            display: block;
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+        }
+        .mensaje-amor { color: #ff0000;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .mensaje-final {
+            font-size: 30px;
+            color: #ff0000;
+            margin-top: 20px;
+            text-align: center;
+            animation: movimiento 2s infinite alternate;
+        }
+        @keyframes movimiento {
+            0% { transform: translateX(-10px); }
+            100% { transform: translateX(10px); }
+        }
+    </style>
+</head>
+<body>
+    <h1 id="mensaje">Hola Hermano</h1>
+    <img id="imagen" src="" alt="Imagen bienvenida">
+    <button id="boton">Click aquí</button>
+    <div class="gatos" id="gatos"></div>
+
+    <script>
+        setTimeout(() => {
+            const mensaje = document.getElementById("mensaje");
+            mensaje.style.opacity = "0";
+            setTimeout(() => {
+                mensaje.textContent = "¡Bienvenido!";
+                mensaje.style.opacity = "1";
+                
+                // Agregar imagen después del mensaje
+                const imagen = document.getElementById("imagen");
+                imagen.src = "https://i.pinimg.com/236x/52/af/55/52af550aed68319fdecfe416b7724d48.jpg";
+                imagen.style.display = "block";
+                
+                // Mostrar botón
+                const boton = document.getElementById("boton");
+                boton.style.display = "block";
+
+                boton.addEventListener("click", () => {
+                    document.body.innerHTML = ""; // Borra todo el contenido
+                    
+                    const mensajeAmor = document.createElement("h2");
+                    mensajeAmor.className = "mensaje-amor";
+                    mensajeAmor.textContent = "TE QUIERO MUCHO GOLDITO";
+                    document.body.appendChild(mensajeAmor);
+                    
+                    const gatosDiv = document.createElement("div");
+                    gatosDiv.className = "gatos";
+                    document.body.appendChild(gatosDiv);
+                    
+                    const imagenesGatos = [
+                        "https://i.pinimg.com/originals/a9/fb/d4/a9fbd437bf2255bf60b6bff1fabf4bed.gif",
+                        "https://i.gifer.com/origin/14/14ba20d63dce8dedf360adcdef2a2b1a_w200.gif",
+                        "https://i.pinimg.com/originals/29/7e/74/297e745a77dc909c46cd27cc28ae2cbd.gif",
+                        "https://static.wikia.nocookie.net/c06ea0cb-2ada-46a5-8893-5b5efe8723b9/scale-to-width/755"
+                    ];
+                    
+                    imagenesGatos.forEach(src => {
+                        const img = document.createElement("img");
+                        img.src = src;
+                        gatosDiv.appendChild(img);
+                    });
+                    
+                    const mensajeFinal = document.createElement("h3");
+                    mensajeFinal.className = "mensaje-final";
+                    mensajeFinal.textContent = "PRONTO ESTARÈ EN CASA";
+                    document.body.appendChild(mensajeFinal);
+                });
+            }, 500);
+        }, 3000);
+    </script>
+</body>
+</html>
